@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ChildComponent from "./ChildComponent";
 
 class LifeCycle extends Component {
   constructor(props) {
@@ -14,6 +13,20 @@ class LifeCycle extends Component {
 
   componentDidMount() {
     console.log(`Step${this.state.step} :I'm in the componentDidMount() `);
+    this.setState({
+      name: this.props.name,
+      step: this.state.step + 1,
+    });
+
+    console.log(
+      `Step${this.state.step} :setState has change in componentDidMount() `
+    );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(`Step${this.state.step} :I'm in the component didUpdate () `);
+    console.log(prevState);
+    console.log(this.state);
   }
 
   render() {
@@ -23,7 +36,6 @@ class LifeCycle extends Component {
         {console.log(`Step${this.state.step} :Update of the dom  `)}
         <p>loading:{this.state.step}</p>
         <p>Name: {this.state.name}</p>
-        <ChildComponent />
       </div>
     );
   }
